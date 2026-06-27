@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibes.Studio - Fotografi Wisuda Kekinian</title>
+    
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo 600
+                        secondary: '#A855F7', // Purple 500
+                        dark: '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations -->
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #FAFAFA;
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Initial state for elements before they scroll into view */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Image hover effect */
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-primary selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="ph-fill ph-aperture text-3xl text-primary"></i>
+                    <span class="font-bold text-2xl tracking-tight text-dark">Vibes<span class="text-primary">.Studio</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center font-medium">
+                    <a href="#beranda" class="text-slate-600 hover:text-primary transition-colors">Beranda</a>
+                    <a href="#layanan" class="text-slate-600 hover:text-primary transition-colors">Paket</a>
+                    <a href="#portfolio" class="text-slate-600 hover:text-primary transition-colors">Portofolio</a>
+                    <a href="#testimoni" class="text-slate-600 hover:text-primary transition-colors">Testimoni</a>
+                    <a href="#booking" class="bg-dark text-white px-6 py-2.5 rounded-full hover:bg-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Book Now</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-dark focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg absolute w-full">
+            <a href="#beranda" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Beranda</a>
+            <a href="#layanan" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Paket</a>
+            <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Portofolio</a>
+            <a href="#testimoni" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Testimoni</a>
+            <a href="#booking" class="block px-3 py-2 mt-4 text-center rounded-full text-base font-medium bg-dark text-white hover:bg-primary">Book Now</a>
+        </div>
+    </nav>
+
+    <section id="beranda" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="text-center lg:text-left reveal">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-primary font-medium text-sm mb-6 border border-indigo-100">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+        </span>
+        Booking sekarang sebelum moment mu hilang!
+    </div>
+    <h1 class="text-5xl lg:text-7xl font-extrabold text-dark leading-tight mb-6">
+        Cerita Terbaikmu, <br class="hidden lg:block">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Bukan Cuma Di Memori.</span>
+    </h1>
+    <p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0">
+        Bikin setiap momen berharga dan selebrasi pentingmu makin *aesthetic* bareng orang tersayang. Tanpa pose kaku, murni *vibe* bahagia kalian yang tertangkap kamera.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <a href="#booking" class="bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-indigo-700 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2">
+            Amankan Slot <i class="ph-bold ph-arrow-right"></i>
+        </a>
+        <a href="#portfolio" class="bg-white text-dark border border-slate-200 px-8 py-4 rounded-full font-semibold text-lg hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2">
+            Lihat Hasil <i class="ph-bold ph-image"></i>
+        </a>
+    </div>
+                    
+                    <!-- Social Proof -->
+                    <div class="mt-10 flex items-center justify-center lg:justify-start gap-4">
+                        <div class="flex -space-x-3">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Client">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Client">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">
+                                500+
+                            </div>
+                        </div>
+                        <div class="text-sm text-slate-600">
+                            Dipercaya <span class="font-bold text-dark">500+</span> Wisudawan
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Images -->
+                <div class="relative reveal reveal-delay-1 hidden md:block">
+                    <!-- Decor element -->
+                    <div class="absolute -top-10 -right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+                    <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+                    
+                    <div class="grid grid-cols-2 gap-4 relative">
+                        <div class="space-y-4 pt-12">
+                            <img src="image/1.jpeg" alt="Wisuda 1" class="rounded-2xl shadow-lg w-full h-64 object-cover">
+                            <img src="image/2.jpeg" alt="Wisuda 2" class="rounded-2xl shadow-lg w-full h-48 object-cover">
+                        </div>
+                        <div class="space-y-4">
+                            <img src="image/3.jpg" alt="Wisuda 3" class="rounded-2xl shadow-lg w-full h-48 object-cover">
+                            <img src="image/4.jpg" alt="Wisuda 4" class="rounded-2xl shadow-lg w-full h-72 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white" id="kenapa-kami">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Kenapa Harus Vibes.Studio?</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Kami mengerti kamu gak suka pose kaku kayak foto KTP. Kami fokus nangkap candid, tawa, dan *vibes* aslimu bareng bestie dan keluarga.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-slate-50 p-8 rounded-3xl reveal border border-slate-100 hover:border-primary/20 transition-colors">
+                    <div class="w-14 h-14 bg-indigo-100 text-primary rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-fill ph-camera-rotate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Anti Pose Kaku</h3>
+                    <p class="text-slate-600">Fotografer kami jago ngarahin gaya biar kamu tetep natural, *slay*, dan kelihatan paling cakep di depan kamera.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-slate-50 p-8 rounded-3xl reveal reveal-delay-1 border border-slate-100 hover:border-primary/20 transition-colors">
+                    <div class="w-14 h-14 bg-purple-100 text-secondary rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-fill ph-lightning"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Edit Kilat (H+3)</h3>
+                    <p class="text-slate-600">Nggak perlu nunggu berminggu-minggu buat post di IG. Dalam 3 hari, foto udah cakep dan siap *upload*.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-slate-50 p-8 rounded-3xl reveal reveal-delay-2 border border-slate-100 hover:border-primary/20 transition-colors">
+                    <div class="w-14 h-14 bg-pink-100 text-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-fill ph-magic-wand"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Tone Aesthetic</h3>
+                    <p class="text-slate-600">Color grading khas Gen Z. Dari *warm cinematic* sampai *clean minimalis*, kamu bebas request tone favoritmu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="layanan" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Pricing</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-dark mt-2 mb-4">Pilih Paket Sesuai Vibe-mu</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Harga transparan, ga ada biaya sembunyi. Patungan bareng temen biar makin hemat!</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Package 1: Solo -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 reveal">
+                    <h3 class="text-2xl font-bold text-dark mb-2">Solo Vibe</h3>
+                    <p class="text-slate-500 text-sm mb-6">Cocok buat kamu yang pengen fokus foto portrait sendiri & keluarga inti.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-dark">Rp 350k</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Sesi 1 Jam
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> 1 Fotografer
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Semua File Mentah (Google Drive)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> 10 Foto Retouch Halus
+                        </li>
+                    </ul>
+                    <a href="#booking" class="block w-full py-3 px-4 bg-slate-100 text-dark font-semibold text-center rounded-xl hover:bg-slate-200 transition-colors">Pilih Solo</a>
+                </div>
+
+                <!-- Package 2: Bestie (Popular) -->
+                <div class="bg-dark rounded-3xl p-8 shadow-2xl reveal reveal-delay-1 relative transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 transform translate-x-2 -translate-y-2">
+                        <span class="bg-gradient-to-r from-primary to-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Paling Worth It</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Circle Vibe</h3>
+                    <p class="text-slate-300 text-sm mb-6">Paket patungan bareng circle-mu (Maks 5 orang).</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-white">Rp 850k</span>
+                        <span class="text-slate-400">/grup</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-slate-200">
+                            <i class="ph-bold ph-check text-secondary"></i> Sesi 2 Jam (Studio/Outdoor Kampus)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-200">
+                            <i class="ph-bold ph-check text-secondary"></i> 2 Fotografer (Biar candid dapet)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-200">
+                            <i class="ph-bold ph-check text-secondary"></i> Semua File Mentah
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-200">
+                            <i class="ph-bold ph-check text-secondary"></i> 25 Foto Retouch Halus
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-200">
+                            <i class="ph-bold ph-check text-secondary"></i> 1 Video Reels/TikTok Pendek
+                        </li>
+                    </ul>
+                    <a href="#booking" class="block w-full py-3 px-4 bg-primary text-white font-semibold text-center rounded-xl hover:bg-indigo-500 transition-colors">Pilih Circle</a>
+                </div>
+
+                <!-- Package 3: Ultimate -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 reveal reveal-delay-2">
+                    <h3 class="text-2xl font-bold text-dark mb-2">Sultan Vibe</h3>
+                    <p class="text-slate-500 text-sm mb-6">Buat kamu yang mau sewa kami seharian untuk dokumentasi paripurna.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-dark">Rp 1.5M</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Sesi Seharian (Maks 6 Jam)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Tim Fotografer & Videografer
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Cetak Album 20 Halaman
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600">
+                            <i class="ph-bold ph-check text-green-500"></i> Cinematic Video 1 Menit
+                        </li>
+                    </ul>
+                    <a href="#booking" class="block w-full py-3 px-4 bg-slate-100 text-dark font-semibold text-center rounded-xl hover:bg-slate-200 transition-colors">Pilih Sultan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Sneak Peek Portofolio</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Nih, liat sendiri hasil jepretan kami. *No filter filter club*, murni editan aesthetic aja.</p>
+            </div>
+
+            <!-- Masonry-like Grid -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                <!-- Portofolio Items -->
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/1.jpeg" class="w-full rounded-2xl" alt="Grad 1">
+                </div>
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/2.jpeg" class="w-full rounded-2xl" alt="Grad 2">
+                </div>
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/3.jpg" class="w-full rounded-2xl" alt="Grad 3">
+                </div>
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/4.jpg" class="w-full rounded-2xl" alt="Grad 4">
+                </div>
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/5.jpg" class="w-full rounded-2xl" alt="Grad 5">
+                </div>
+                <div class="img-hover-zoom break-inside-avoid reveal">
+                    <img src="image/6.png" class="w-full rounded-2xl" alt="Grad 6">
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center reveal">
+                <a href="#" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-indigo-800 transition-colors">
+                    Lihat lebih banyak di Instagram kami <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimoni" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Kata Mereka yang Udah Lulus</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Testimoni asli tanpa rekayasa. Kalo jelek kami ganti rugi (bercanda, pasti bagus kok).</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-slate-800 p-8 rounded-3xl reveal border border-slate-700 relative">
+                    <i class="ph-fill ph-quotes text-4xl text-slate-600 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Sarah" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Sarah Amalia</h4>
+                            <p class="text-xs text-slate-400">Ilmu Komunikasi, UI</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">"Sumpah seru banget foto bareng tim Vibes! Fotografernya asik banget bisa cairin suasana. Aku yang kaku depan kamera jadi keliatan luwes banget. Editannya juga super aesthetic ✨"</p>
+                    <div class="mt-4 flex text-yellow-400 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-slate-800 p-8 rounded-3xl reveal reveal-delay-1 border border-slate-700 relative">
+                    <i class="ph-fill ph-quotes text-4xl text-slate-600 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Bima" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Bima P.</h4>
+                            <p class="text-xs text-slate-400">Teknik Mesin, ITB</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">"Ambil paket Circle buat ber-5. Worth it banget parah! Hasil videonya dibikin ala reels kekinian, transisinya mulus. H+2 udah dikirim semua mentahannya. Mantap!"</p>
+                    <div class="mt-4 flex text-yellow-400 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-slate-800 p-8 rounded-3xl reveal reveal-delay-2 border border-slate-700 relative">
+                    <i class="ph-fill ph-quotes text-4xl text-slate-600 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Nadia" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Nadia Safira</h4>
+                            <p class="text-xs text-slate-400">Manajemen, UGM</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">"Awalnya ragu karena harganya affordable, eh pas liat hasilnya ngalah-ngalahin studio mahal dong. Tone warnanya pas banget sama feed IG aku. Pokoknya luv bgt! ❤️"</p>
+                    <div class="mt-4 flex text-yellow-400 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Section Booking -->
+<section id="booking" class="py-24 relative overflow-hidden" style="background-color: #4A0E17;">
+    <!-- Background graphics -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-500 opacity-10"></div>
+    <!-- ... background graphics ... -->
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Yuk Konsultasi Dahulu</h2>
+        
+        <!-- BUTTON KONSULTASI GRATIS -->
+        <div class="mb-10">
+            <a href="https://wa.me/62895413456512?text=Halo%20Admin%20Vibes.Studio,%20saya%20mau%20konsultasi%20dulu%20sebelum%20booking.%20Boleh%20dibantu?" 
+               target="_blank"
+               class="inline-flex items-center gap-2 bg-white/10 hover:bg-white border border-white/20 hover:border-white text-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-md shadow-lg">
+                <i class="ph-bold ph-chats text-xl"></i> Konsultasi Gratis (Tanya-tanya dulu)
+            </a>
+        </div>
+        <!-- AKHIR BUTTON -->
+    </div>
+</section>
+
+    <section id="booking" class="py-24 bg-primary relative overflow-hidden">
+        <!-- Background graphics -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-10"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-secondary opacity-20"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Booking Sekarang Juga</h2>
+            <p class="text-indigo-100 text-lg mb-10">Jadwal bulan ini sisa sedikit karena lagi musim wisuda. Yuk chat admin sekarang buat amanin tanggalmu!</p>
+            
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl mx-auto text-left max-w-xl text-dark">
+                <h3 class="text-2xl font-bold mb-6 text-center">Isi Form Booking Cepet</h3>
+                <!-- Tambahkan id="bookingForm" dan hapus inline onsubmit sebelumnya -->
+                    <form id="bookingForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
+                            <input type="text" id="nama" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Misal: Budi Santoso">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Kampus/Univ</label>
+                                <input type="text" id="kampus" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Singkatan aja gpp">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Tanggal Wisuda</label>
+                                <input type="date" id="tanggal" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-600">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Pilih Paket</label>
+                            <select id="paket" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white">
+                                <option>Paket Solo Vibe</option>
+                                <option>Paket Circle Vibe (Best Seller)</option>
+                                <option>Paket Sultan Vibe</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full mt-4 bg-dark text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-whatsapp text-xl text-green-400"></i> Kirim ke WhatsApp Admin
+                        </button>
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="success-msg" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-xl text-sm text-center font-medium border border-green-100">
+                            Terima kasih! Kamu akan langsung diarahkan ke WhatsApp Admin...
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="ph-fill ph-aperture text-3xl text-primary"></i>
+                        <span class="font-bold text-2xl tracking-tight text-white">Vibes<span class="text-primary">.Studio</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Agensi fotografi wisuda spesialis gaya kekinian, candid, dan natural. Kami berbasis di Jakarta dan siap melayani se-Jabodetabek.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ph-fill ph-instagram-logo text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ph-fill ph-tiktok-logo text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ph-fill ph-twitter-logo text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#beranda" class="text-slate-400 hover:text-white text-sm transition-colors">Beranda</a></li>
+                        <li><a href="#layanan" class="text-slate-400 hover:text-white text-sm transition-colors">Daftar Harga</a></li>
+                        <li><a href="#portfolio" class="text-slate-400 hover:text-white text-sm transition-colors">Galeri Kami</a></li>
+                        <li><a href="#testimoni" class="text-slate-400 hover:text-white text-sm transition-colors">Testimoni</a></li>
+                    </ul>
+                </div>
+
+                <!-- Bantuan -->
+                <div>
+                <h4 class="text-white font-bold mb-4">Bantuan (FAQ)</h4>
+                <ul class="space-y-2">
+                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Berapa lama editnya?</a></li>
+                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Bisa reschedule?</a></li>
+                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Dapet cetakan gak?</a></li>
+                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Syarat dan Ketentuan</a></li>
+                </ul>
+            </div>
+
+                <!-- Kontak -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-map-pin text-primary text-xl mt-0.5"></i>
+                            <span class="text-slate-400 text-sm">Jl. Aesthetic Selatan No. 99, Jakarta Selatan</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-whatsapp-logo text-primary text-xl"></i>
+                            <span class="text-slate-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-envelope-simple text-primary text-xl"></i>
+                            <span class="text-slate-400 text-sm">hello@vibesstudio.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">
+    &copy; <span id="year"></span> Vibes.Studio. All rights reserved. 
+</p>
+                <p class="text-slate-500 text-sm flex items-center gap-1">
+                    Made with <i class="ph-fill ph-heart text-red-500"></i> vin.ard
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ Modal Pop-up -->
+<div id="faq-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300 max-h-[85vh] overflow-y-auto">
+        
+        <!-- Header Modal -->
+        <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+            <h3 class="text-2xl font-bold text-dark flex items-center gap-2">
+                <i class="ph-bold ph-question text-primary"></i> Pertanyaan Umum (FAQ)
+            </h3>
+            <button id="close-faq" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 hover:text-dark transition-colors">
+                <i class="ph-bold ph-x text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Konten Item FAQ -->
+        <div class="space-y-4">
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <h4 class="font-bold text-dark mb-2">Berapa lama proses editing fotonya?</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Proses editing standar kami adalah **H+3** setelah sesi foto selesai. Kamu akan langsung menerima link Google Drive berisi semua file mentahan dan foto pilihan yang sudah di-retouch halus.</p>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <h4 class="font-bold text-dark mb-2">Apakah jadwal booking bisa di-reschedule?</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Bisa, maksimal **H-3 sebelum hari H sesi foto**, tergantung pada ketersediaan slot kosong fotografer kami pada tanggal baru yang kamu ajukan.</p>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <h4 class="font-bold text-dark mb-2">Apakah paketnya sudah termasuk cetak album?</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Untuk cetak album fisik eksklusif 20 halaman sudah *include* di **Paket Sultan Vibe**. Namun, jika kamu mengambil paket Solo atau Circle dan ingin menambah cetak album, kamu bisa request ke admin lewat WhatsApp.</p>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <h4 class="font-bold text-dark mb-2">Bagaimana sistem pembayarannya?</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Kamu cukup membayar DP (Down Payment) sebesar 30% untuk mengamankan slot tanggalmu. Pelunasan sisa pembayaran dilakukan pada hari H setelah sesi foto selesai.</p>
+            </div>
+        </div>
+    </div>
+</div>
+    </footer>
+
+    <script>
+
+        // Memperbarui tahun copyright secara otomatis
+document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Scroll Reveal Animation Logic
+        // Menggunakan Intersection Observer agar elemen muncul mulus saat di-scroll
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15, // Memicu animasi ketika 15% elemen terlihat
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    // Stop observing once revealed (agar animasi tidak berulang terus dan bikin pusing)
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // 2. Navbar Background Blur Effect on Scroll
+        // Menambahkan bayangan pada navbar ketika di scroll ke bawah
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.style.background = 'rgba(255, 255, 255, 0.85)';
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.style.background = 'rgba(255, 255, 255, 0.7)';
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 4. WhatsApp Direct Booking Logic
+document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Mencegah reload halaman
+
+    // === GANTI NOMOR WA ADMIN DI SINI ===
+    // Format wajib menggunakan kode negara tanpa tanda + atau spasi (62 = Indonesia)
+    const nomorAdmin = "62895413456512"; 
+
+    // Ambil data dari form
+    const nama = document.getElementById('nama').value;
+    const kampus = document.getElementById('kampus').value;
+    const tanggal = document.getElementById('tanggal').value;
+    const paket = document.getElementById('paket').value;
+
+    // Tampilkan pesan sukses sebentar sebelum redirect
+    document.getElementById('success-msg').classList.remove('hidden');
+
+    // Susun template chat agar rapi saat masuk ke WA
+    const teksChat = `Halo Admin Vibes.Studio! ✨%0A` +
+                     `Saya mau booking slot foto wisuda nih.%0A%0A` +
+                     `*Detail Data:*%0A` +
+                     `- Nama Lengkap: ${encodeURIComponent(nama)}%0A` +
+                     `- Kampus/Univ: ${encodeURIComponent(kampus)}%0A` +
+                     `- Tanggal Wisuda: ${encodeURIComponent(tanggal)}%0A` +
+                     `- Pilihan Paket: *${encodeURIComponent(paket)}*%0A%0A` +
+                     `Apakah slot pada tanggal tersebut masih aman?`;
+
+    // Buat URL WhatsApp API
+    const urlWhatsApp = `https://wa.me/${nomorAdmin}?text=${teksChat}`;
+
+    // Redirect otomatis ke WhatsApp setelah 1.5 detik
+    setTimeout(() => {
+        window.open(urlWhatsApp, '_blank');
+        document.getElementById('bookingForm').reset();
+        document.getElementById('success-msg').classList.add('hidden');
+    }, 1500);
+});
+
+// Logic untuk Pop-up FAQ Modal
+const faqModal = document.getElementById('faq-modal');
+const closeFaqBtn = document.getElementById('close-faq');
+const modalContent = faqModal.querySelector('.transform');
+
+function openFaqModal() {
+    faqModal.classList.remove('hidden');
+    faqModal.classList.add('flex');
+    
+    // Memberikan delay mikro agar efek transisi animasi fade & scale bekerja
+    setTimeout(() => {
+        faqModal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+    }, 10);
+}
+
+function closeFaqModal() {
+    faqModal.classList.add('opacity-0');
+    modalContent.classList.remove('scale-100');
+    modalContent.classList.add('scale-95');
+    
+    // Sembunyikan element setelah transisi selesai (300ms)
+    setTimeout(() => {
+        faqModal.classList.add('hidden');
+        faqModal.classList.remove('flex');
+    }, 300);
+}
+
+// Event listener tombol close
+closeFaqBtn.addEventListener('click', closeFaqModal);
+
+// Tutup modal secara otomatis jika area luar modal diklik
+faqModal.addEventListener('click', (e) => {
+    if (e.target === faqModal) {
+        closeFaqModal();
+    }
+});
+    </script>
+</body>
+</html>
