@@ -584,12 +584,9 @@
 
                 <!-- Bantuan -->
                 <div>
-                <h4 class="text-white font-bold mb-4">Bantuan (FAQ)</h4>
+                <h4 class="text-white font-bold mb-4">Syarat dan Ketentuan</h4>
                 <ul class="space-y-2">
-                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Berapa lama editnya?</a></li>
-                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Bisa reschedule?</a></li>
-                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Dapet cetakan gak?</a></li>
-                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Syarat dan Ketentuan</a></li>
+                    <li><a href="javascript:void(0)" onclick="openFaqModal()" class="text-slate-400 hover:text-white text-sm transition-colors">Baca Syarat dan Ketentuan</a></li>
                 </ul>
             </div>
 
@@ -607,7 +604,7 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="ph-fill ph-envelope-simple text-primary text-xl"></i>
-                            <span class="text-slate-400 text-sm">email@gmail.com</span>
+                            <span class="text-slate-400 text-sm">framehousesmg@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -623,42 +620,92 @@
             </div>
         </div>
 
-        <!-- FAQ Modal Pop-up -->
+        <!-- Syarat & Ketentuan Modal Pop-up -->
 <div id="faq-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0">
     <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300 max-h-[85vh] overflow-y-auto">
         
         <!-- Header Modal -->
-        <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
-            <h3 class="text-2xl font-bold text-dark flex items-center gap-2">
-                <i class="ph-bold ph-question text-primary"></i> Pertanyaan Umum (FAQ)
+        <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-5">
+            <h3 class="text-xl md:text-2xl font-bold text-dark flex items-center gap-2">
+                <i class="ph-bold ph-scroll text-primary"></i> Syarat & Ketentuan Pemotretan
             </h3>
             <button id="close-faq" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 hover:text-dark transition-colors">
                 <i class="ph-bold ph-x text-xl"></i>
             </button>
         </div>
 
-        <!-- Konten Item FAQ -->
+        <!-- Catatan Pembuka -->
+        <div class="bg-amber-50 border border-amber-100 text-amber-800 rounded-2xl p-4 text-xs md:text-sm mb-6 leading-relaxed">
+            <p class="font-semibold mb-1">💡 Mohon Diperhatikan:</p>
+            <p>Silakan baca dengan saksama dan bagikan informasi ini kepada seluruh peserta apabila Anda melakukan pemesanan paket.</p>
+        </div>
+
+        <!-- Konten Poin-Poin -->
         <div class="space-y-4">
+            
+            <!-- Sebelum Hari Pemotretan -->
             <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                <h4 class="font-bold text-dark mb-2">Berapa lama proses editing fotonya?</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Proses editing standar kami adalah **H+3** setelah sesi foto selesai. Kamu akan langsung menerima link Google Drive berisi semua file mentahan dan foto pilihan yang sudah di-retouch halus.</p>
+                <h4 class="font-bold text-dark mb-3 flex items-center gap-2 text-base">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span> Sebelum Hari Pemotretan
+                </h4>
+                <ul class="text-slate-600 text-sm space-y-2.5 list-disc list-inside leading-relaxed">
+                    <li>Pelunasan wajib dilakukan paling lambat <strong class="text-dark">H-3 pukul 23.59 WIB</strong>. Jika melewati batas waktu tanpa konfirmasi, reservasi dianggap dibatalkan.</li>
+                    <li>Perubahan jadwal maupun lokasi pemotretan hanya dapat diproses melalui admin dan tergantung pada ketersediaan jadwal.</li>
+                    <li>Apabila terjadi perubahan jadwal resmi dari pihak kampus/instansi, sesi dapat dijadwalkan ulang tanpa biaya tambahan (selama fotografer memiliki slot kosong). DP dapat dikembalikan jika fotografer tidak memiliki jadwal pengganti.</li>
+                    <li>Permohonan reschedule harus dikonfirmasi paling lambat <strong class="text-dark">H-7</strong>. Permintaan setelah batas tersebut dikenakan biaya administrasi <strong class="text-dark">Rp200.000</strong>.</li>
+                    <li>Fotografer akan menghubungi client pada <strong class="text-dark">H-1</strong> untuk koordinasi teknis.</li>
+                    <li>Untuk pemesanan group, komunikasi dilakukan melalui satu orang perwakilan.</li>
+                    <li>Paket yang telah dibayar tidak dapat diubah ke paket dengan nilai lebih rendah.</li>
+                </ul>
             </div>
 
+            <!-- Saat Hari Pemotretan -->
             <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                <h4 class="font-bold text-dark mb-2">Apakah jadwal booking bisa di-reschedule?</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Bisa, maksimal **H-3 sebelum hari H sesi foto**, tergantung pada ketersediaan slot kosong fotografer kami pada tanggal baru yang kamu ajukan.</p>
+                <h4 class="font-bold text-dark mb-3 flex items-center gap-2 text-base">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span> Saat Hari Pemotretan
+                </h4>
+                <ul class="text-slate-600 text-sm space-y-2.5 list-disc list-inside leading-relaxed">
+                    <li>Koordinasi dilakukan langsung dengan fotografer.</li>
+                    <li>Perpindahan lokasi diperbolehkan selama masih dalam area yang sama.</li>
+                    <li>Client wajib hadir tepat waktu. Keterlambatan akan mengurangi durasi sesi.</li>
+                    <li>Reschedule pada hari H dikenakan biaya sesuai nilai paket, kecuali kondisi *force majeure*.</li>
+                    <li>Saat hujan ringan, sesi dapat dilakukan di area semi-indoor atau menggunakan properti payung.</li>
+                </ul>
             </div>
 
+            <!-- Setelah Hari Pemotretan -->
             <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                <h4 class="font-bold text-dark mb-2">Apakah paketnya sudah termasuk cetak album?</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Untuk cetak album fisik eksklusif 20 halaman sudah *include* di **Paket Sultan Vibe**. Namun, jika kamu mengambil paket Solo atau Circle dan ingin menambah cetak album, kamu bisa request ke admin lewat WhatsApp.</p>
+                <h4 class="font-bold text-dark mb-3 flex items-center gap-2 text-base">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span> Setelah Hari Pemotretan
+                </h4>
+                <ul class="text-slate-600 text-sm space-y-2.5 list-disc list-inside leading-relaxed">
+                    <li>File preview dikirim maksimal <strong class="text-dark">1x24 jam</strong> melalui Google Drive. Link akan aktif selama 15 hari.</li>
+                    <li>Pengiriman ulang file setelah masa aktif habis dikenakan biaya <strong class="text-dark">Rp50.000</strong>.</li>
+                    <li>Proses edit meliputi *crop*, penyesuaian warna, pencahayaan, dan *retouch* ringan.</li>
+                    <li>Request penghapusan objek tertentu dikenakan biaya tambahan <strong class="text-dark">Rp10.000 - Rp15.000/foto</strong>.</li>
+                    <li>Tidak melayani manipulasi fisik/tubuh yang berlebihan.</li>
+                </ul>
             </div>
 
+            <!-- Ketentuan Umum -->
             <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                <h4 class="font-bold text-dark mb-2">Bagaimana sistem pembayarannya?</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Kamu cukup membayar DP (Down Payment) sebesar 30% untuk mengamankan slot tanggalmu. Pelunasan sisa pembayaran dilakukan pada hari H setelah sesi foto selesai.</p>
+                <h4 class="font-bold text-dark mb-3 flex items-center gap-2 text-base">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span> Ketentuan Umum
+                </h4>
+                <ul class="text-slate-600 text-sm space-y-2.5 list-disc list-inside leading-relaxed">
+                    <li>DP maupun pembayaran yang telah dilakukan tidak dapat dikembalikan apabila client membatalkan pemesanan secara sepihak.</li>
+                    <li>Hasil dokumentasi dapat digunakan sebagai portofolio resmi <strong class="text-dark">House Frame</strong>.</li>
+                    <li>Client dapat meminta agar foto tidak dipublikasikan sebelum hari H pemotretan berlangsung.</li>
+                    <li>Foto yang telah dipublikasikan tidak dapat diminta *take down*, kecuali ada kesepakatan tertulis sebelumnya.</li>
+                    <li>Client dapat mengirimkan <strong class="text-dark">5-10 referensi pose</strong> sebelum hari pemotretan dimulai.</li>
+                </ul>
             </div>
         </div>
+
+        <!-- Footer Modal Tambahan -->
+        <p class="text-center text-slate-400 text-xs mt-6 italic">
+            Dengan melakukan pembayaran, client dianggap menyetujui seluruh syarat dan ketentuan di atas.
+        </p>
     </div>
 </div>
     </footer>
